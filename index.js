@@ -10,8 +10,16 @@ const port = 8000;
 
 const server = new grpc.Server();
 
+const todos = [];
+
 function createTodo(call, callback) {
-  console.log("call ", call);
+  //   console.log("call ", call);
+  const todoItem = {
+    id: todos.length + 1,
+    text: call.request.text,
+  };
+  todos.push(todoItem);
+  callback(null, todoItem);
 }
 
 function getTodos() {}
