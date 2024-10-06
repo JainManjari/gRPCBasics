@@ -6,6 +6,8 @@ const todoPackage = grpcObject.todoPackage;
 
 const port = 8000;
 
+const text = process.argv[2];
+
 const client = new todoPackage.Todo(
   `localhost:${port}`,
   grpc.credentials.createInsecure()
@@ -14,9 +16,14 @@ const client = new todoPackage.Todo(
 client.createTodo(
   {
     id: -1,
-    text: "doing laundry",
+    text: text === undefined || text === null ? "Doing laundry" : text,
   },
   (err, response) => {
-    console.log("Recieved from server " + JSON.stringify(response));
+    console.log("Recieved from createTodos " + JSON.stringify(response));
   }
 );
+
+client.getTodos({}, (err, response) => {
+  console.log("Recieved from getTodos " + JSON.stringify(response));
+});
+ 

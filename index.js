@@ -22,7 +22,9 @@ function createTodo(call, callback) {
   callback(null, todoItem);
 }
 
-function getTodos() {}
+function getTodos(call, callback) {
+  callback(null, { items: todos });
+}
 
 server.addService(todoPackage.Todo.service, {
   createTodo: createTodo,
