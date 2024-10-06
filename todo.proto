@@ -18,4 +18,5 @@ message voidNoParam {
 service Todo {
     rpc createTodo(TodoItem) returns (TodoItem);
     rpc getTodos(voidNoParam) returns (TodoItems);
-}
+    rpc getTodosStream(voidNoParam) returns (stream TodoItems);
+} 

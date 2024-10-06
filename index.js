@@ -26,9 +26,15 @@ function getTodos(call, callback) {
   callback(null, { items: todos });
 }
 
+function getTodosStream(call, callback) {
+  todos.forEach((t) => call.write(t));
+  call.end();
+} 
+
 server.addService(todoPackage.Todo.service, {
   createTodo: createTodo,
   getTodos: getTodos,
+  getTodosStream: getTodosStream,
 });
 
 server.bindAsync(

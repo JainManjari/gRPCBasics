@@ -26,4 +26,10 @@ client.createTodo(
 client.getTodos({}, (err, response) => {
   console.log("Recieved from getTodos " + JSON.stringify(response));
 });
- 
+
+const call = client.getTodosStream();
+call.on("data", (item) => {
+  console.log("Recieved from getTodosStream " + JSON.stringify(item));
+});
+
+call.on("end", (e) => console.log("Server done"));
