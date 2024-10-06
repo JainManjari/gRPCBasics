@@ -11,7 +11,11 @@ message TodoItems {
     repeated TodoItem items = 1;
 }
 
+message void {
+
+}
+
 service Todo {
     rpc createTodo(TodoItem) returns (TodoItem);
-    rpc getTodos() returns TodoItems;
+    rpc getTodos(void) returns (TodoItems);
 }
